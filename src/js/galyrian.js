@@ -1,3 +1,24 @@
+// Comprobar el dispositivo
+
+var Device = 'desktop'
+var windowWidth = $(window).width();
+function comprobarDevice () {
+	if (windowWidth <= '440') {
+		Device = 'mobile'
+	} else if (windowWidth <= '920') {
+		Device = 'tablet'
+	} else if (windowWidth > '920') {
+		Device = 'desktop'
+	}
+}
+comprobarDevice();
+$(window).resize(function(){
+	if($(this).width() != windowWidth){
+		windowWidth = $(this).width();
+		comprobarDevice();
+	}
+});
+
 // Posición en la Galería
 var gPos = 1
 

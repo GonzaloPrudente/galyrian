@@ -72,6 +72,19 @@ gulp.task('build:js', function () {
 		}))
 		.pipe(gulp.dest(paths.dev.js.dest))
 		.pipe(rename({
+			prefix: 'plug&play-',
+			basename: 'galyrian',
+			suffix: '.min',
+			extname: '.js'
+		}))
+		.pipe(gulp.dest('./dist/'));
+});
+
+gulp.task('dist:js', function () {
+	return gulp.src('./src/js/*.js')
+		.pipe(concat('main.js'))
+		.pipe(uglify())
+		.pipe(rename({
 			basename: 'galyrian',
 			suffix: '.min',
 			extname: '.js'
@@ -92,6 +105,6 @@ gulp.task('watch', function () {
 	gulp.watch(paths.dev.html.watch, ['build:html']);
 });
 
-gulp.task('build', ['build:css', 'build:js', 'build:html']);
+gulp.task('build', ['build:css', 'build:js', 'build:html', 'dist:js']);
 
 gulp.task('default', ['server', 'build', 'watch']);
