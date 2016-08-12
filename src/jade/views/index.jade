@@ -1,0 +1,40 @@
+extends ../modelo.jade
+
+block META
+	meta(name="description", content="Una Galería")
+	link(rel="canonical" href="")
+
+block TITULO
+	| Inicio
+
+block CSS
+	style.
+		.contenedor {
+			width: 100%;
+			height: 300px;
+			background-color: #7d8de5;
+		}
+
+block BODY
+	.contenedor
+		#galyrian(coleccion="test")
+
+block JS
+	script.
+		var test = [
+			{
+				titulo: 'Primera Imagen',
+				src: 'img/1.jpg',
+				descripcion: 'Puedes definir un título y una descripción'
+			}, {
+				titulo: 'O sólo un Título',
+				src: 'img/2.jpg',
+			}, {
+				src: 'img/3.jpg',
+				descripcion: 'O sólo una descripcion'
+			}, {
+				titulo: 'También soy Responsive',
+				src: 'img/4.jpg',
+				descripcion: 'Y mis controles se adaptan a un entorno móvil'
+			}
+		];
