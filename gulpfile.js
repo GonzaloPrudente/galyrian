@@ -53,7 +53,13 @@ gulp.task('build:css', function () {
 		.pipe(rename({
 			suffix: '.min'
 		}))
-		.pipe(gulp.dest(paths.dev.css.dest));
+		.pipe(gulp.dest(paths.dev.css.dest))
+		.pipe(rename({
+			basename: 'galyrian',
+			suffix: '.min',
+			extname: '.css'
+		}))
+		.pipe(gulp.dest('./dist/'));
 });
 
 gulp.task('build:js', function () {
@@ -64,7 +70,13 @@ gulp.task('build:js', function () {
 		.pipe(rename({
 			suffix: '.min'
 		}))
-		.pipe(gulp.dest(paths.dev.js.dest));
+		.pipe(gulp.dest(paths.dev.js.dest))
+		.pipe(rename({
+			basename: 'galyrian',
+			suffix: '.min',
+			extname: '.js'
+		}))
+		.pipe(gulp.dest('./dist/'));
 });
 
 gulp.task('build:html', function buildHTML () {
