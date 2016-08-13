@@ -6,7 +6,10 @@ jade = require('gulp-jade'),
 stylus = require('gulp-stylus'),
 server = require('gulp-webserver'),
 rename = require('gulp-rename'),
+zip = require('gulp-zip'),
 uglify = require('gulp-uglify');
+
+var version = '1.0.2'
 
 const paths = {
 	dev: {
@@ -72,7 +75,7 @@ gulp.task('build:js', function () {
 		}))
 		.pipe(gulp.dest(paths.dev.js.dest))
 		.pipe(rename({
-			prefix: 'plug&play-',
+			prefix: 'plugnplay-',
 			basename: 'galyrian',
 			suffix: '.min',
 			extname: '.js'
@@ -92,6 +95,24 @@ gulp.task('dist:js', function () {
 		.pipe(gulp.dest('./dist/'));
 });
 
+gulp.task('dist:zip:pnp', function () {
+	return gulp.src([
+			'./dist/plugnplay-galyrian.min.js',
+			'./dist/galyrian.min.css'
+		])
+		.pipe(zip('galyrian-pnp-' + version + '.zip'))
+		.pipe(gulp.dest('./dist/'));
+});
+
+gulp.task('dist:zip:oc', function () {
+	return gulp.src([
+			'./dist/galyrian.min.js',
+			'./dist/galyrian.min.css'
+		])
+		.pipe(zip('galyrian-' + version + '.zip'))
+		.pipe(gulp.dest('./dist/'));
+});
+
 gulp.task('build:html', function buildHTML () {
 	return gulp.src(paths.dev.html.src)
 		.pipe(jade())
@@ -100,11 +121,13 @@ gulp.task('build:html', function buildHTML () {
 });
 
 gulp.task('watch', function () {
-	gulp.watch(paths.dev.css.watch, ['build:css']);
-	gulp.watch(paths.dev.js.watch, ['build:js']);
+	gulp.watch(paths.dev.css.watch, ['build:css', 'dist']);
+	gulp.watch(paths.dev.js.watch, ['build:js', 'dist']);
 	gulp.watch(paths.dev.html.watch, ['build:html']);
 });
 
-gulp.task('build', ['build:css', 'build:js', 'build:html', 'dist:js']);
+gulp.task('build', ['build:css', 'build:js', 'build:html']);
 
-gulp.task('default', ['server', 'build', 'watch']);
+gulp.task('dist', ['dist:js', 'dist:zip:pnp', 'dist:zip:oc'])
+
+gulp.task('default', ['server', 'build', 'dist', 'watch']);

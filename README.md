@@ -1,3 +1,3 @@
 # Galyrian
-Galería responsive, con interfaz intuitiva y automática a la de YA!
+Galería responsive, bonita y automática a la de YA!
 

@@ -28951,7 +28951,7 @@ function gPlay () {
 	play = setInterval(gNext, 5000);
 	$('#pbar span').stop();
 	$('#pbar span').animate({width: '0%'}, 300);
-	$('#pbar span').animate({width: '100%'}, 4999);
+	$('#pbar span').animate({width: '100%'}, 4500);
 	$('.play3').css('display', 'block');
 	$('.pause2').css('display', 'none');
 	playing = true;
