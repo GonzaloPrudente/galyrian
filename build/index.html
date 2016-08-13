@@ -12,6 +12,37 @@ header > figure > img {
 	height: 50vh;
 	background-color: #7d8de5;
 }
+section {
+	width: 100%;
+	padding: 3rem 0;
+}
+section > article {
+	display: block;
+	width: 95%;
+	max-width: 1024px;
+	margin: 0 auto 2rem auto;
+}
+section > article:last-child {
+	margin-bottom: 0;
+}
+#descargas-rapidas {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	height: 180px;
+}
+#descargas-rapidas > a {
+	text-decoration: none;
+	background-color: #7d8de5;
+	padding: 1.3rem 2rem;
+	color: #ecf0f1;
+	text-align: center;
+	transition: .3s all ease-out;
+}
+#descargas-rapidas > a:hover {
+	box-shadow: 0 0 15px 0 rgba(167,52,221,1);
+}
 @media all and (min-width:720px) {
 	header > figure > img {
 		width: 50%;
@@ -20,7 +51,7 @@ header > figure > img {
 		height: 80vh;
 	}
 }
-</style><link rel="stylesheet" href="css/main.min.css"></head><body><header><figure><img src="img/cover.png"></figure></header><div class="contenedor"><div id="galyrian" coleccion="test"></div></div><script type="text/javascript" src="js/main.min.js" async></script><script>var test = [
+</style><link rel="stylesheet" href="css/main.min.css"></head><body><header><figure><img src="img/cover.png"></figure></header><div class="contenedor"><div id="galyrian" coleccion="test"></div></div><section><article><h2>¿Qué es Galyrian?</h2><p>Básicamente Galyrian es una galería fotográfica con un diseño sencillo, bonito y responsive.</p><p>Además, es muy sencilla de implementarse.</p></article><article><h2>Descarga YA mismo los archivos necesarios, y comienza a crear tu galería.</h2><div id="descargas-rapidas"><a href="https://github.com/EdGraVill/galyrian/raw/master/dist/galyrian-pnp-1.0.2.zip">Versión Plug N' Play<br><small>galyrian-pnp-1.0.2.zip</small></a><a href="https://github.com/EdGraVill/galyrian/raw/master/dist/galyrian-1.0.2.zip">Versión con librerías aparte<br><small>galyrian-1.0.2.zip</small></a></div></article><article><h2>Instalación</h2><h3>Versión Plug N' Play</h3><p>La forma más sencilla de implementar Galyrian es con la versión Plug N' Play, pues tiene todas las utilerías necesarias comprimidas en el mismo archivo, así que literalmente sólo instalas los archivos y ya están listos para usarse.</p><p>El archivo .zip contiene dos archivos:</p><ul><li>galyrian.min.css</li><li>plugnplay-galyrian.min.js</li></ul><p>Lo único que debes hacer es llamar el archivo galyrian.min.css dentro de la etiqueta head así:</p><p>< link rel="stylesheet" href="galyrian.min.css" ></p><p>Y el archivo plugnplay-galyrian.min.js antes de cerrar la etiqueta < /body > de la siguiente manera:</p><p>< script type="text/javascript" src="plugnplay-galyrian.min.js" ></p><strong></strong></article></section><script type="text/javascript" src="js/main.min.js" async></script><script>var test = [
 	{
 		titulo: 'Primera Imagen',
 		src: 'img/1.jpg',

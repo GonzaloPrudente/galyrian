@@ -23,6 +23,37 @@ block CSS
 			height: 50vh;
 			background-color: #7d8de5;
 		}
+		section {
+			width: 100%;
+			padding: 3rem 0;
+		}
+		section > article {
+			display: block;
+			width: 95%;
+			max-width: 1024px;
+			margin: 0 auto 2rem auto;
+		}
+		section > article:last-child {
+			margin-bottom: 0;
+		}
+		#descargas-rapidas {
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			align-items: center;
+			height: 180px;
+		}
+		#descargas-rapidas > a {
+			text-decoration: none;
+			background-color: #7d8de5;
+			padding: 1.3rem 2rem;
+			color: #ecf0f1;
+			text-align: center;
+			transition: .3s all ease-out;
+		}
+		#descargas-rapidas > a:hover {
+			box-shadow: 0 0 15px 0 rgba(167,52,221,1);
+		}
 		@media all and (min-width:720px) {
 			header > figure > img {
 				width: 50%;
@@ -38,6 +69,33 @@ block BODY
 			img(src="img/cover.png")
 	.contenedor
 		#galyrian(coleccion="test")
+	section
+		article
+			h2 ¿Qué es Galyrian?
+			p Básicamente Galyrian es una galería fotográfica con un diseño sencillo, bonito y responsive.
+			p Además, es muy sencilla de implementarse.
+		article
+			h2 Descarga YA mismo los archivos necesarios, y comienza a crear tu galería.
+			#descargas-rapidas
+				a(href="https://github.com/EdGraVill/galyrian/raw/master/dist/galyrian-pnp-1.0.2.zip") Versión Plug N' Play
+					br
+					small galyrian-pnp-1.0.2.zip
+				a(href="https://github.com/EdGraVill/galyrian/raw/master/dist/galyrian-1.0.2.zip") Versión con librerías aparte
+					br
+					small galyrian-1.0.2.zip
+		article
+			h2 Instalación
+			h3 Versión Plug N' Play
+			p La forma más sencilla de implementar Galyrian es con la versión Plug N' Play, pues tiene todas las utilerías necesarias comprimidas en el mismo archivo, así que literalmente sólo instalas los archivos y ya están listos para usarse.
+			p El archivo .zip contiene dos archivos:
+			ul
+				li galyrian.min.css
+				li plugnplay-galyrian.min.js
+			p Lo único que debes hacer es llamar el archivo galyrian.min.css dentro de la etiqueta head así:
+			p < link rel="stylesheet" href="galyrian.min.css" >
+			p Y el archivo plugnplay-galyrian.min.js antes de cerrar la etiqueta < /body > de la siguiente manera:
+			p < script type="text/javascript" src="plugnplay-galyrian.min.js" >
+			strong
 
 block JS
 	script.
