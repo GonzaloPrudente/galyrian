@@ -4,13 +4,51 @@ block META
 	meta(name="description", content="Una Galería")
 	link(rel="canonical" href="")
 
-block TITULO
-	| Inicio
-
 block CSS
 	style.
+		@import 'https://fonts.googleapis.com/css?family=Open+Sans:500,700|Roboto:300';
 		body {
 			background-color: #ecf0f1;
+		}
+		body > h1,
+		body > h2,
+		body > h3 {
+			font-family: 'Open Sans';
+			font-weight: 700;
+		}
+		body > h2 {
+			width: 90%;
+			border-bottom: 1px solid #282828;
+			padding: .5rem 0;
+		}
+		body p, li {
+			font-family: 'Roboto';
+			font-weight: 300;
+			font-size: 1.2rem;
+			-webkit-user-select: none;
+			cursor: default;
+			padding: 0;
+			margin: 0;
+		}
+		body a {
+			text-decoration: none;
+			color: #7d8de5;
+		}
+		.code {
+			background-color: #404040;
+			padding: 1rem 1rem;
+			color: #fff;
+		}
+		.code > p {
+			cursor: text;
+			-webkit-user-select: inherit;
+			padding: 0 1rem;
+		}
+		.code > p:hover {
+			background-color: #606060;
+		}
+		.code > p > span {
+			color: #f1c40f;
 		}
 		header > figure > img {
 			width: 100%;
@@ -36,25 +74,32 @@ block CSS
 		section > article:last-child {
 			margin-bottom: 0;
 		}
-		#descargas-rapidas {
+		.contenedor-centrado {
 			display: flex;
 			flex-direction: column;
 			justify-content: space-between;
 			align-items: center;
 			height: 180px;
 		}
-		#descargas-rapidas > a {
+		a.btn {
 			text-decoration: none;
 			background-color: #7d8de5;
 			padding: 1.3rem 2rem;
 			color: #ecf0f1;
 			text-align: center;
 			transition: .3s all ease-out;
+			font-weight: bold;
 		}
-		#descargas-rapidas > a:hover {
+		a.btn:hover {
 			box-shadow: 0 0 15px 0 rgba(167,52,221,1);
 		}
+		a.btn > small {
+			font-weight: normal;
+		}
 		@media all and (min-width:720px) {
+			h2 {
+				width: 50%;
+			}
 			header > figure > img {
 				width: 50%;
 			}
@@ -75,12 +120,12 @@ block BODY
 			p Básicamente Galyrian es una galería fotográfica con un diseño sencillo, bonito y responsive.
 			p Además, es muy sencilla de implementarse.
 		article
-			h2 Descarga YA mismo los archivos necesarios, y comienza a crear tu galería.
-			#descargas-rapidas
-				a(href="https://github.com/EdGraVill/galyrian/raw/master/dist/galyrian-pnp-1.0.2.zip") Versión Plug N' Play
+			h2 Descargas
+			.contenedor-centrado
+				a.btn(href="https://github.com/EdGraVill/galyrian/raw/master/dist/galyrian-pnp-1.0.2.zip") Versión Plug N' Play
 					br
 					small galyrian-pnp-1.0.2.zip
-				a(href="https://github.com/EdGraVill/galyrian/raw/master/dist/galyrian-1.0.2.zip") Versión con librerías aparte
+				a.btn(href="https://github.com/EdGraVill/galyrian/raw/master/dist/galyrian-1.0.2.zip") Versión con librerías aparte
 					br
 					small galyrian-1.0.2.zip
 		article
@@ -92,10 +137,83 @@ block BODY
 				li galyrian.min.css
 				li plugnplay-galyrian.min.js
 			p Lo único que debes hacer es llamar el archivo galyrian.min.css dentro de la etiqueta head así:
-			p < link rel="stylesheet" href="galyrian.min.css" >
+			.code
+				p < link rel="stylesheet" href="galyrian.min.css" >
 			p Y el archivo plugnplay-galyrian.min.js antes de cerrar la etiqueta < /body > de la siguiente manera:
-			p < script type="text/javascript" src="plugnplay-galyrian.min.js" >
-			strong
+			.code
+				p < script type="text/javascript" src="plugnplay-galyrian.min.js" >
+			h3 Versión con Librerías Aparte
+			p También puedes descargar sólo el código de Galyrian en JS y los estilos necesarios para funcionar en CSS; esto es para todas aquellas personas que en su proyecto ya tengan jQuery, jQuery UI y/o Hammer.js no tengan conflictos al utilizar Galyrian.
+			p Galyrian utiliza las siguientes librerías, que igualmente se encuentran contenidas en el archivo .zip en caso de que necesites una aparte:
+			.code
+				p > jQuery 3.1.0
+				p > jQuery UI 1.12.0
+				p > Hammer.js 2.0.8
+			p El archivo .zip contiene los siguientes archivos:
+			ul
+				li galyrian.min.css
+				li galyrian.min.js
+				li | lib
+					br
+					| |---- hammer-2.0.8.min.js
+					br
+					| |---- jquery-3.1.0.min.js
+					br
+					| |---- jquery-ui-1.12.0.min.js
+			p Se instala de la misma manera que en la Versión Plug N' Play, pero llamando el código después de las librerías.
+		article
+			h2 Uso
+			p Implementarlo es realmente muy simple, lo únio que se debe hacer, es que dentro de un contenedor el cual podrás mover y ajustar el tamaño libremente sin preocuparte pues Galyrian se ajusta; crear un div con el id "galyrian":
+			.code
+				p < div id="galyrian" >    < /div >
+			p Para indicarle qué imágenes con sus respectivos títulos y descripciones debe usar, primero se debe agredar el atributo "coleccion" con el nombre de nuestra colección de imágenes como valor:
+			.code
+				p < div id="galyrian" coleccion="
+					span nomCol
+					| " >    < /div >
+			p Y después se debe crear un array en javascript que contenga como objetos los atributos de cada imagen ya mencionados:
+			.code
+				p var 
+					span nomCol
+					|  = [
+				p &nbsp;&nbsp;&nbsp;&nbsp;{
+				p &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;titulo: 'Título de imagen 1',
+				p &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;src: '[ruta de la imagen (puede ser de sitios externos)]',
+				p &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;descripcion: 'Descripción de la imagen 1'
+				p &nbsp;&nbsp;&nbsp;&nbsp;}, {
+				p &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;titulo: 'Título de imagen 2, Sólo tiene título',
+				p &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;src: 'img/mi-foto.jpg'
+				p &nbsp;&nbsp;&nbsp;&nbsp;}, {
+				p &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;src: 'http://img3.wikia.nocookie.net/__cb20131014231758/legomessageboards/images/c/c2/Troll-face.png',
+				p &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;descripcion: 'Descripción de la imagen 3, Sólo tiene descripción'
+				p &nbsp;&nbsp;&nbsp;&nbsp;}
+				p ];
+		article
+			h2 Colaboraciones
+			p Actualmente, y por ser un proyecto nuevo, sólo trabaja en él 
+				a(href="https://github.com/EdGraVill") Eduardo Grajales
+			|  pero tú también puedes ayudar a mejorar y hacer más grande este proyecto.
+			p Aceptamos dos formas de colaboración:
+			h3 Enviándonos tus ideas para mejorar
+			.contenedor-centrado(style="height: auto;")
+				a.btn(href="mailto:hola@inncode.mx?Subject=Tengo una brillante idea para Galyrian") Enviar Mail
+			p Las mejores ideas irán en la lista de promesas para futuras versiones.
+			h3 Contribuyendo directamente al desarrollo implementando tus propias ideas o ayudando a cumplir las promesas para las futuras versiones
+			.contenedor-centrado(style="height: auto;")
+				a.btn(href="https://github.com/EdGraVill/galyrian#fork-destination-box") Fork
+			p Las promesas para futuras versiones están en la siguiente sección.
+		article
+			h2 Próximamente
+			p Si estás leyendo esto, posiblemente eres uno de los primeros en descubrir Galyrian, pues es muy nueva y las ambiciones son muchas, por eso a manera de 'ToDo list' y de promesas para futuras veriones, la siguiente lista contiene todas las cosas que proximamente podrás encontrar:
+			ul
+				li Versión hecha con JavaScript puro
+				li Mejoras en el rendimiento
+				li Templates
+				li Configuración Completa
+				li Miniaturas
+		article
+			h2 Licencia
+			a(href="https://www.gnu.org/licenses/gpl.html") GPL 3.0
 
 block JS
 	script.
