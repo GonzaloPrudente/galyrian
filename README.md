@@ -33,11 +33,9 @@ Y el archivo plugnplay-galyrian.min.js antes de cerrar la etiqueta </body> de la
 ### Versión con Librerías Aparte
 También puedes descargar sólo el código de Galyrian en JS y los estilos necesarios para funcionar en CSS; esto es para todas aquellas personas que en su proyecto ya tengan jQuery, jQuery UI y/o Hammer.js no tengan conflictos al utilizar Galyrian.
 Galyrian utiliza las siguientes librerías, que igualmente se encuentran contenidas en el archivo .zip en caso de que necesites una aparte:
-`
-> jQuery 3.1.0
-> jQuery UI 1.12.0
-> Hammer.js 2.0.8
-`
+`jQuery 3.1.0`
+`jQuery UI 1.12.0`
+`Hammer.js 2.0.8`
 El archivo .zip contiene los siguientes archivos:
 * galyrian.min.css
 * galyrian.min.js
